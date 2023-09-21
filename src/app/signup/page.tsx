@@ -1,46 +1,114 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react'
-import './signup.css'
-import Link from 'next/link'
+import React, { useState } from "react";
+import "./signup.css";
+import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { BallTriangle } from "react-loader-spinner";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignUp = () => {
-  const [user, setUser] = useState({userName: "", password: "", email: "", mobile: ""})
+  const [user, setUser] = useState({
+    userName: "",
+    password: "",
+    email: "",
+    mobile: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      setIsLoading(true);
+      await axios.post("api/users/signup", user);
+      router.push("/login");
+      toast.success("Successfully Registered!");
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <div>
       <div className="login-box">
-        <h2>Sign Up</h2>
-        <form>
-          <div className="user-box">
-            <input type="text" name ="username" required value={user.userName} onChange={(e)=>setUser({...user, userName: e.target.value})}/>
-            <label>Username</label>
+        <h2>{isLoading ? "Signing Up" : "Sign Up"}</h2>
+        {isLoading ? (
+          <div className="w-100 d-flex justify-content-center my-4">
+            <BallTriangle
+              height={200}
+              width={200}
+              radius={5}
+              color="#03e9f4"
+              ariaLabel="ball-triangle-loading"
+              wrapperClass={{}}
+              wrapperStyle=""
+              visible={true}
+            />
           </div>
-          <div className="user-box">
-            <input type="password" name="password" required value={user.password} onChange={(e)=>setUser({...user, password: e.target.value})}/>
-            <label>Password</label>
-          </div>
-          <div className="user-box">
-            <input type="email" name="email" required value={user.email} onChange={(e)=>setUser({...user, email: e.target.value})}/>
-            <label>Email</label>
-          </div>
-          <div className="user-box">
-            <input type="text" name="mobile" required value={user.mobile} onChange={(e)=>setUser({...user, mobile: e.target.value})}/>
-            <label>Mobile No</label>
-          </div>
-          <div className='d-flex justify-content-center'>
-          <Link className='myButton my-3' href="#">
-            <span />
-            <span />
-            <span />
-            <span />
-            Submit
-          </Link>
-          </div>
-          <p className='text-white mt-3'>Already Registered ? <Link href="/login"> Login Here</Link></p>
-        </form>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <div className="user-box">
+              <input
+                type="text"
+                name="username"
+                required
+                autocomplete="off" 
+                value={user.userName}
+                onChange={(e) => setUser({ ...user, userName: e.target.value })}
+              />
+              <label>Username</label>
+            </div>
+            <div className="user-box">
+              <input
+                type="password"
+                name="password"
+                required
+                value={user.password}
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
+              />
+              <label>Password</label>
+            </div>
+            <div className="user-box">
+              <input
+                type="email"
+                name="email"
+                required
+                value={user.email}
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
+              />
+              <label>Email</label>
+            </div>
+            <div className="user-box">
+              <input
+                type="text"
+                name="mobile"
+                required
+                value={user.mobile}
+                onChange={(e) => setUser({ ...user, mobile: e.target.value })}
+              />
+              <label>Mobile No</label>
+            </div>
+            <div className="d-flex justify-content-center">
+              <button className="myButton my-3" type="submit">
+                <span />
+                <span />
+                <span />
+                <span />
+                Submit
+              </button>
+            </div>
+            <p className="text-white mt-3">
+              Already Registered ? <Link href="/login"> Login Here</Link>
+            </p>
+          </form>
+        )}
       </div>
+      <Toaster position="top-center" />
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

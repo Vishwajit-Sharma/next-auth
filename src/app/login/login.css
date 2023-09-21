@@ -59,7 +59,11 @@
   .login-box form p a:hover{
     font-weight: 600;
   }
-  
+  button{
+    background-color: transparent;
+    border: none;
+
+  }
   .login-box form .myButton {
     position: relative;
     /* display: inline-block; */
