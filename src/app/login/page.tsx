@@ -1,19 +1,22 @@
-import React from 'react'
+"use client"
+
+import React,{useState} from 'react'
 import './login.css'
 import Link from 'next/link'
 
 const Login = () => {
+  const [user, setUser] = useState({userName: "", password: ""})
   return (
     <div>
       <div className="login-box">
         <h2>Login</h2>
         <form>
           <div className="user-box">
-            <input type="text" name ="username" required />
+            <input type="text" name ="username" required value={user.userName} onChange={(e)=>setUser({...user, userName: e.target.value})}/>
             <label>Username</label>
           </div>
           <div className="user-box">
-            <input type="password" name="password" required />
+            <input type="password" name="password" required value={user.password} onChange={(e)=>setUser({...user, password: e.target.value})}/>
             <label>Password</label>
           </div>
           <div className='d-flex justify-content-center'>
