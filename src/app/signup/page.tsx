@@ -22,15 +22,23 @@ const SignUp = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      await axios.post("api/users/signup", user);
+     const response = await axios.post("api/users/signup", user);
+     
+     if(response.data.status == 201){
+      toast.error(response.data.message);
+      setUser({...user, userName: ""})
+     }
+     else if(response.data.status == 200){
+      toast.success(response.data.message);
       router.push("/login");
-      toast.success("Successfully Registered!");
+     }
     } catch (error: any) {
       toast.error(error.message);
     } finally {
       setIsLoading(false);
     }
   };
+  
   return (
     <div>
       <div className="login-box">
@@ -43,8 +51,8 @@ const SignUp = () => {
               radius={5}
               color="#03e9f4"
               ariaLabel="ball-triangle-loading"
-              wrapperClass={{}}
-              wrapperStyle=""
+              // wrapperClass={{}}
+              // wrapperStyle=""
               visible={true}
             />
           </div>
@@ -55,7 +63,7 @@ const SignUp = () => {
                 type="text"
                 name="username"
                 required
-                autocomplete="off" 
+                autoComplete="off" 
                 value={user.userName}
                 onChange={(e) => setUser({ ...user, userName: e.target.value })}
               />
@@ -76,6 +84,7 @@ const SignUp = () => {
                 type="email"
                 name="email"
                 required
+                autoComplete="off" 
                 value={user.email}
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
               />
@@ -86,6 +95,7 @@ const SignUp = () => {
                 type="text"
                 name="mobile"
                 required
+                autoComplete="off" 
                 value={user.mobile}
                 onChange={(e) => setUser({ ...user, mobile: e.target.value })}
               />
