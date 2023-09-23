@@ -30,7 +30,7 @@ const SignUp = () => {
      }
      else if(response.data.status == 200){
       toast.success(response.data.message);
-      router.push("/login");
+      router.push("/");
      }
     } catch (error: any) {
       toast.error(error.message);

@@ -59,6 +59,12 @@
   .login-box form p a:hover{
     font-weight: 600;
   }
+.forgot{
+  color: #03e9f4
+}
+.forgot:hover{
+  font-weight: 600;
+}
   button{
     background-color: transparent;
     border: none;

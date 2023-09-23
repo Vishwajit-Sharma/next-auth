@@ -35,6 +35,22 @@ const Login = () => {
     }
   };
 
+ async function forgotPassword(){
+  if(user.userName == ""){
+    return toast.error("Enter your username")
+  }
+    const response = await axios.post("/api/users/forgotpassword", user)
+
+    if(response.data.status == 201){
+      toast.error(response.data.message);
+      setUser({userName: "", password: ""})
+    }
+    else if(response.data.status == 200){
+      toast.success(response.data.message)
+    }
+   
+  }
+
   return (
     <div>
       <div className="login-box">
@@ -55,7 +71,7 @@ const Login = () => {
             <label>Username</label>
           </div>
           <div className="user-box">
-            <input type="password" name="password" required value={user.password} onChange={(e)=>setUser({...user, password: e.target.value})}/>
+            <input type="password" name="password" value={user.password} onChange={(e)=>setUser({...user, password: e.target.value})}/>
             <label>Password</label>
           </div>
           <div className='d-flex justify-content-center'>
@@ -67,6 +83,7 @@ const Login = () => {
             Submit
           </button>
           </div>
+          <p className='text-white mt-3'>Forgot Password ? <button className='forgot' onClick={forgotPassword}> Click Here</button></p>
           <p className='text-white mt-3'>Not Registered ? <Link href="/signup"> Register Here</Link></p>
         </form>}
       </div>
