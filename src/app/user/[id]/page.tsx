@@ -16,14 +16,17 @@ const userPage = ({params}: any) => {
     },[])
 
   return (
-    <div>
-      <h1 className='text-white'>{params.id}</h1>
+    <div className='d-flex flex-column mt-5 pt-5'>
+      <h5 className='text-white text-center'>ID : <span className='text-warning'>{params.id}</span></h5>
       <div>
-        <h1 className='text-warning'>{user?.userName}</h1>
-        <h3 className='text-warning'>{user?.email}</h3>
-        <h5 className='text-warning'>{user?.mobile}</h5>
+        <h1 className='text-center text-white mt-4'>UserName : <span className='text-warning'>{user?.userName}</span></h1>
+        <h3 className='text-center text-white mt-3'>Email : <span className='text-warning'>{user?.email}</span></h3>
+        <h4 className='text-center text-white mt-3'>Mobile No : <span className='text-warning'>{user?.mobile}</span></h4>
       </div>
+      <div className='d-flex justify-content-center'>
       <button className="btn btn-light mt-5" onClick={()=> router.push("/")}>Back to Home</button>
+      </div>
+      
     </div>
   )
 }

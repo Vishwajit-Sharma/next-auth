@@ -53,7 +53,7 @@ export default function Home() {
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light py-3">
         <div className="w-100 d-flex justify-content-between px-4">
-          <h4 className="">Next Auth with Me</h4>
+          <h4 className="">Next Authentication with Me</h4>
           {isLoggedIn ? (
             <button className="btn btn-danger" onClick={handleLogout}>
               Logout
@@ -83,7 +83,7 @@ export default function Home() {
         <div>
           <h1 className="text-primary text-center mt-5 pt-5">
             Hello &nbsp;
-            <span className="text-warning">
+            <span className="text-warning text-decoration-underline">
               {isLoggedIn ? user.userName && user.userName : "Guest"}
             </span>
           </h1>
