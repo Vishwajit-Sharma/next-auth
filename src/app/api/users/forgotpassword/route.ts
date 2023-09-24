@@ -18,7 +18,7 @@ export async function POST(request: NextRequest){
                     message: "User Not Found",
                     success: true,
                     status: 201
-                })
+                }, {status:200})
             }
     
             //Send reset mail
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest){
                 message: "Mail Sent to Reset Password",
                 success: true,
                 status: 200
-            })
+            }, {status:200})
         }
 
         else if(token){
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest){
             return NextResponse.json({
                 message: "Password Reset Link Sent Successfully",
                 success: true
-            })
+            }, {status:200})
         }  
 
     } catch (error:any) {
