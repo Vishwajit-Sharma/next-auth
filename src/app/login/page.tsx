@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      const response = await axios.post("api/users/login", user);
+      const response = await axios.post("/api/users/login", user);
 
       if(response.data.status == 201){
         toast.error(response.data.message);

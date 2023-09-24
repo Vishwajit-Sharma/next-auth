@@ -15,7 +15,7 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchuser() {
-      const response = await axios.get("api/users/userdata");
+      const response = await axios.get("/api/users/userdata");
       console.log("data user", response);
       if(response.data.status == 201){
         setUser({})
@@ -39,7 +39,7 @@ export default function Home() {
   const handleLogout = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get("api/users/logout");
+      const response = await axios.get("/api/users/logout");
       toast.success(response.data.message)
       setIsLoggedIn(false);
     } catch (error: any) {

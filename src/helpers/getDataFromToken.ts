@@ -12,7 +12,6 @@ const getDataFromToken = (request: NextRequest) => {
     else{
       return false
     }
-   
     
   } catch (error: any) {
         throw new Error(error.message)
