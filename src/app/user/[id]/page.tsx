@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from "axios";
 
-const userPage = ({params}: any) => {
+const UserPage = ({params}: any) => {
     const [user, setUser] = useState<any>({})
     const router = useRouter()
 
@@ -31,4 +31,4 @@ const userPage = ({params}: any) => {
   )
 }
 
-export default userPage
+export default UserPage
