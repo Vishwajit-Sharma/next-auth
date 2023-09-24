@@ -64,13 +64,13 @@ html {
     color: #03e9f4;
     font-size: 12px;
   }
-  .login-box form p{
+  .login-box  p{
     letter-spacing: 2px;
   }
-  .login-box form p a{
+  .login-box  p a{
     color: #03e9f4;
   }
-  .login-box form p a:hover{
+  .login-box  p a:hover{
     font-weight: 600;
   }
 .forgot{

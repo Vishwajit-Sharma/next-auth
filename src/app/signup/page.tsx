@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import "./signup.css";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
