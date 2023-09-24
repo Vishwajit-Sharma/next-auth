@@ -14,8 +14,8 @@ export async function POST(request: NextRequest){
             return NextResponse.json({error: "Invalid Token"}, {status:400} )
         }
         user.isVerified = true
-        user.verifyToken = undefined
-        user.verifyTokenExpiry = undefined
+        // user.verifyToken = undefined
+        // user.verifyTokenExpiry = undefined
 
         await user.save()
 

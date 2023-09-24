@@ -88,7 +88,7 @@ const ForgotPassword = () => {
           <div className="d-flex justify-content-center">
             <button className="reset my-3" onClick={handleReset}
             disabled = {password.pass !== password.cpass || password.pass == "" || password.cpass == ""}>
-              Reset
+              {password.pass !== password.cpass || password.pass == "" || password.cpass == "" ? 'Password Not Matched' : 'Reset'}
             </button>
           </div>
         </div>

@@ -47,6 +47,7 @@ const Login = () => {
     }
     else if(response.data.status == 200){
       toast.success(response.data.message)
+      setUser({userName: "", password: ""})
     }
    
   }
@@ -71,7 +72,7 @@ const Login = () => {
             <label>Username</label>
           </div>
           <div className="user-box">
-            <input type="password" name="password" value={user.password} onChange={(e)=>setUser({...user, password: e.target.value})}/>
+            <input type="password" name="password" required value={user.password} onChange={(e)=>setUser({...user, password: e.target.value})}/>
             <label>Password</label>
           </div>
           <div className='d-flex justify-content-center'>

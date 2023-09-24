@@ -29,6 +29,7 @@ const SignUp = () => {
      }
      else if(response.data.status == 200){
       toast.success(response.data.message);
+      toast.success("Verify your mail");
       router.push("/");
      }
     } catch (error: any) {
